@@ -17,7 +17,10 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/redirect'; //can be accessed outside the class
+    // public const 
+    public const HOME = '/redirect'; //can be accessed outside the classfor admin
+    public const  UserPage = '/userLogin';
+   
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

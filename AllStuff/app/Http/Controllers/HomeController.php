@@ -22,6 +22,7 @@ class HomeController extends Controller
         }
         else{
             return view('home.userpage');
+            // return view(dashboard);
         }
     }
 }

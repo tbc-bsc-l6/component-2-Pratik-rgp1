@@ -75,6 +75,8 @@ return [
     */
 
     'home' => RouteServiceProvider::HOME,
+    // 'userpage' => RouteServiceProvider::UserPage,
+    
 
     /*
     |--------------------------------------------------------------------------

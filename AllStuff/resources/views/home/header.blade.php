@@ -1,7 +1,7 @@
 <header class="header_section">
     <div class="container" style="padding:5px">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="#"><img width="140" src="images/logo.png" alt="something happened to the logo" /></a>
+            <a class="navbar-brand"><img width="140" src="images/logo.png" alt="something happened to the logo" /></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -9,20 +9,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                  
-                    <li class="nav-item">
-                        <a class="nav-link" href="product.html">Products</a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="blog_list.html">Latest</a>
+                        <a class="nav-link" href="#">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="/contact">About</a>
                     </li>
+                    <li class="nav-item">
+    <a class="nav-link" href="{{ route('contact') }}" onsubmit=" return toggleContactForm()">Contact</a>
+</li>
+
                     <form class="form-inline">
-                       
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" aria-label="Search"
                                 aria-describedby="basic-addon2">
@@ -34,13 +33,23 @@
                             </div>
                         </div>
                     </form>
-                    
+
+                    @if(Route::has('login'))
+                    @auth
+                    <x-app-layout>
+
+                       
+                        </x-app-layout>
+
+                    @else
                     <li class="nav-item">
-                        <a class="btn" id="logincss" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn" id="registercss" href="{{ route('register') }}">Register</a>
-                    </li>
+                            <a class="btn" id="logincss" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn" id="registercss" href="{{ route('register') }}">Register</a>
+                        </li>
+                        @endauth
+                        @endif
                 </ul>
             </div>
         </nav>

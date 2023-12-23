@@ -29,8 +29,15 @@
                                 <h3>Account</h3>
                                 <ul>
                                     <li><a href="#">Account</a></li>
-                                    <li><a href="#">Login</a></li>
-                                    <li><a href="#">Register</a></li>
+                                    @guest
+                <!-- Non-authenticate users -->
+                <li><a href="{{ route('login') }}">Login</a></li>
+                <li><a href="{{ route('register') }}">Register</a></li>
+            @endguest
+            
+            @auth
+               
+            @endauth
                                 </ul>
                             </div>
                         </div>
@@ -38,8 +45,8 @@
                 </div>
                 <div class="col-md-5">
                     <div class="widget_menu">
-                    <p><strong>ADDRESS:</strong> 28 White tower, Street Name New York City, USA</p>
-                        <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
+                    <p><strong>ADDRESS:</strong> Kathmandu</p>
+                        <!-- <p><strong>TELEPHONE:</strong> +91 987 654 3210</p> -->
                         <p><strong>EMAIL:</strong> allstuff32@gmail.com</p>
                     </div>
                 </div>
