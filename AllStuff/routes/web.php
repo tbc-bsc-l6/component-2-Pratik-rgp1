@@ -16,20 +16,27 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[HomeController::class,'index']);
-Route::get('/redirect',[HomeController::class,'redirect']);
-Route::get('/view_category',[AdminController::class,'view_category']);
-Route::post('/add_category',[AdminController::class,'add_category']);
-// Route::get('/', function(){
-//     return view('welcome');
-// });
-
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
    
 });
+
+Route::get('/',[HomeController::class,'index']);
+Route::get('/redirect',[HomeController::class,'redirect']);
+Route::get('/view_category',[AdminController::class,'view_category']);
+Route::post('/add_category',[AdminController::class,'add_category']);
+
+Route::delete('/delete_category/{id}',[AdminController::class,'delete_category'])->name('delete_category');
+Route::delete('/delete_product/{id}',[AdminController::class,'delete_product'])->name('delete_product');
+
+Route::get('/view_product',[AdminController::class,'view_product']);
+Route::post('/add_product',[AdminController::class,'add_product']);
+Route::get('/show_product',[AdminController::class,'show_product']);
+
+
+
 
 
 Route::get('/contact', function () {

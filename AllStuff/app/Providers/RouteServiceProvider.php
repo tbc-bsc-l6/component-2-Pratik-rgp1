@@ -18,8 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     // public const 
-    public const HOME = '/redirect'; //can be accessed outside the classfor admin
-    public const  UserPage = '/userLogin';
+    //public const HOME = '/redirect'; 
+    // public const  UserPage = '/userLogin';
    
 
     /**

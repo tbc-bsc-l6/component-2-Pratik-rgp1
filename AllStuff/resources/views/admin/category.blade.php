@@ -17,8 +17,27 @@
         .text_color{
             color:black;
         }
+        .center{
+            margin:auto;
+            width:50%;
+            margin-top:30px;
+            text-align:center;
+            border:2px solid #AD9551;
+           
+        }
     
     </style>
+
+<script>
+    function confirmDelete(categoryId) {
+        var confirmDelete = confirm('Are you sure you want to delete this product   ?');
+
+        if (confirmDelete) {
+            document.getElementById('delete-form-' + categoryId).submit();
+        }
+    }
+</script>
+
   </head>
   <body>
     <div class="container-scroller">
@@ -47,6 +66,31 @@
                     <input type="Submit" class="btn btn-primary" name="submit" value="Add Category">
                 </form>
             </div>
+            <table class="center">
+            <tr>
+                <td>Category Name</td>
+                <td>Action</td>
+            </tr>
+
+            @foreach($data as $category)
+    <tr>
+        <td>{{ $category->category_name }}</td>
+        <td>
+            <form id="delete-form-{{ $category->id }}" action="{{ url('delete_category', $category->id) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form>
+
+            <a class="btn btn-danger" href="#" onclick="confirmDelete('{{ $category->id }}');">
+    Delete
+</a>
+
+
+        </td>
+    </tr>
+@endforeach
+
+    </table>
         </div>
       </div>
   </body>
