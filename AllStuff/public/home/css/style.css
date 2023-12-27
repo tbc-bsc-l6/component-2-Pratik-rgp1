@@ -11,6 +11,23 @@
   color: #ffffff;
 }
 
+/* Edit button hover effect */
+.btn-edit:hover {
+  color: #fff; /* Change text color */
+  background-color: #6c757d; /* Change background color */
+}
+
+/* Delete button hover effect */
+.btn-delete:hover {
+  color: #fff; /* Change text color */
+  background-color: #dc3545; /* Change background color */
+}
+
+.btn-delete:hover {
+  color: #fff; /* Change text color */
+  background-color: #dc3545; /* Change background color */
+}
+
 
 
 * {

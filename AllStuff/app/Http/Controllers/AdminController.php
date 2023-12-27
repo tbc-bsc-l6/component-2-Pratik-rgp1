@@ -58,6 +58,11 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Product deleted successfully!!');
     }
 
+    public function show_product(){
+
+        $product=product::all();
+        return view('admin.show_product', compact('product'));
+    }
     public function delete_product($id){
         $product=product::find($id);
         $product->delete();
@@ -65,9 +70,35 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Product deleted successfully!!');
     }
 
-    public function show_product(){
+    public function update_product($id){
+        $product=product::find($id);
 
-        $product=product::all();
-        return view('admin.show_product', compact('product'));
+        return view('admin.update_product', compact('product'));
     }
+
+    public function update_product_confirm(Request $request, $id){
+        $product=product::find($id);
+
+        $product->title=$request->title;
+        $product->category=$request->category;
+        $product->description=$request->description;
+        $product->price=$request->price;
+        $product->discounted_price=$request->dis_price;
+        $product->quantity=$request->quantity;
+
+        $image=$request->image;
+
+        if($image){
+        $imagename = time().'.'.$image->getClientOriginalExtension();
+
+        $request->image->move('product',$imagename);
+
+        $product->image=$imagename;
+        }
+
+       $product->save();
+
+       return redirect()->back()->with('message', 'Product Updated Successfully!');
+    }
+
 }

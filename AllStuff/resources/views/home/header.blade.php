@@ -18,7 +18,7 @@
                         <a class="nav-link" href="/contact">About</a>
                     </li>
                     <li class="nav-item">
-    <a class="nav-link" href="{{ route('contact') }}" onsubmit=" return toggleContactForm()">Contact</a>
+    <a class="nav-link" href="#">Contact</a>
 </li>
 
                     <form class="form-inline">

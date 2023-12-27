@@ -30,18 +30,14 @@ Route::post('/add_category',[AdminController::class,'add_category']);
 
 Route::delete('/delete_category/{id}',[AdminController::class,'delete_category'])->name('delete_category');
 Route::delete('/delete_product/{id}',[AdminController::class,'delete_product'])->name('delete_product');
+Route::get('/update_product/{id}',[AdminController::class,'update_product'])->name('update_product');
+Route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm'])->name('update_product_confirm');
 
 Route::get('/view_product',[AdminController::class,'view_product']);
 Route::post('/add_product',[AdminController::class,'add_product']);
 Route::get('/show_product',[AdminController::class,'show_product']);
 
-
-
-
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+Route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
 
 

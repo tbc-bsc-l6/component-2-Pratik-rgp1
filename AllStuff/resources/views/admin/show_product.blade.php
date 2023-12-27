@@ -25,7 +25,7 @@
 
 <script>
     function confirmDelete(ProductId) {
-        var confirmDelete = confirm('Are you sure you want to delete this product   ?');
+        var confirmDelete = confirm('Are you sure you want to delete this product ?');
 
         if (confirmDelete) {
             document.getElementById('delete-form-' + ProductId).submit();
@@ -43,6 +43,15 @@
 
       <div class="main-panel">
         <div class="content-wrapper">
+
+        @if(session()->has('message'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+ 
+  <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">x</button>
+        
+                {{session()->get('message')}}
+    </div>
+        @endif
         
         <h2 class="h2_font">All Products</h2>
         
@@ -55,7 +64,8 @@
                 <th class="table_deg">Discount Price</th>
                 <th class="table_deg">Quantity</th>
                 <th class="table_deg">Product Image</th>
-                <th class="table_deg">Action</th>
+                <th class="table_deg">Edit</th>
+                <th class="table_deg">Delete</th>
             </tr>
 
             @foreach($product as $product)
@@ -70,12 +80,15 @@
                     <img class="image" src="/product/{{$product->image}}" style="max-width: 100px; height: auto;">
                 </td>
                 <td>
+                    <a class="btn btn-outline-secondary" href="{{url('update_product',$product->id)}}">Edit</a>
+                </td>
+                <td>
             <form id="delete-form-{{ $product->id }}" action="{{ url('delete_product', $product->id) }}" method="POST" style="display: none;">
                 @csrf
                 @method('DELETE')
             </form>
-
-            <a class="btn btn-danger" href="#" onclick="confirmDelete('{{ $product->id }}');">
+            <a class="btn btn-danger btn-delete" href="#" onclick="confirmDelete('{{ $product->id }}');">
+            
     Delete
 </a>
         </td>
