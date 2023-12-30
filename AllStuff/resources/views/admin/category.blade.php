@@ -93,5 +93,6 @@
     </table>
         </div>
       </div>
+      @include('admin.script')
   </body>
 </html>

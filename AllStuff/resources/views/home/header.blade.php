@@ -18,9 +18,11 @@
                         <a class="nav-link" href="/contact">About</a>
                     </li>
                     <li class="nav-item">
-    <a class="nav-link" href="#">Contact</a>
-</li>
-
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('show_cart')}}">Cart</a>
+                    </li>
                     <form class="form-inline">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" aria-label="Search"

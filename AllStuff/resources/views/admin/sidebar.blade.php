@@ -37,7 +37,8 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-              <span class="menu-title">Category</span>
+              <span class="menu-title"> Category</span>
             </a>
           </li>
+          @include('admin.script')
       </nav>

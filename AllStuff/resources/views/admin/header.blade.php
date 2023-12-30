@@ -78,6 +78,7 @@
                   
               </li>
             </ul>
+            @include('admin.script')
            
           </div>
         </nav>

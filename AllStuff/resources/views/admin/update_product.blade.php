@@ -87,10 +87,13 @@
             
             <div class="div_product">
                 <label>Product Category:</label>
-<!-- errors -->
-             <select class="text_color" name="category" required="">
-                      <option value="{{$product->category}}" selected="">h{{$product->category}}</option>
-             </select>    
+
+<select class="text_color" name="category" required="">
+    @foreach($categories as $cat)
+        <option value="{{$cat->category_name}}">{{$cat->category_name}}</option>
+    @endforeach
+</select>
+   
 
             </div>
 
