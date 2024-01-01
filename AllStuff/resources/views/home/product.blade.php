@@ -14,12 +14,11 @@
                            <a href="{{url('product_details',$products->id)}}" class="option1">
                           View
                            </a>
-                           <form method="POST">
-                              @csrf
-                           <a href="{{ url('add_to_cart', $products->id) }}" class="option2">
-                           Add to cart
-                           </a>
+                           <form method="POST" action="{{ url('add_to_cart', $products->id) }}">
+    @csrf
+    <button type="submit" class="option2">Add to Cart</button>
 </form>
+
                         </div>
                      </div>
                      <div class="img-box">

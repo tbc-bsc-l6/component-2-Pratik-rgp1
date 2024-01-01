@@ -33,16 +33,18 @@ Route::delete('/delete_product/{id}',[AdminController::class,'delete_product'])-
 Route::get('/update_product/{id}',[AdminController::class,'update_product'])->middleware('auth')->name('update_product');
 Route::post('/update_product_confirm/{id}',[AdminController::class,'update_product_confirm'])->middleware('auth')->name('update_product_confirm');
 
+Route::get('/order',[AdminController::class,'order'])->middleware('auth');
+
+
 Route::get('/view_product',[AdminController::class,'view_product'])->middleware('auth');
 Route::post('/add_product',[AdminController::class,'add_product'])->middleware('auth');
 Route::get('/show_product',[AdminController::class,'show_product'])->middleware('auth');
-
-Route::get('/show_cart',[HomeController::class,'show_cart']);
-Route::get('/remove_cart/{id}',[HomeController::class,'remove_cart']);
-
 Route::get('/product_details/{id}',[HomeController::class,'product_details']);
-Route::get('/add_to_cart/{id}',[HomeController::class,'add_to_cart'])->middleware('auth')->name('add_to_cart');
 
+Route::post('/add_to_cart/{id}',[HomeController::class,'add_to_cart'])->middleware('auth')->name('add_to_cart');
+Route::get('/show_cart',[HomeController::class,'show_cart'])->name('show_cart');
+Route::delete('/remove_cart/{id}', [HomeController::class, 'remove_cart'])->name('remove_cart');
 
+Route::get('/payment_checkout/{total}',[HomeController::class,'payment_checkout'])->name('payment_checkout');
 
-
+Route::get('/products_page',[HomeController::class,'products_page'])->middleware('auth');

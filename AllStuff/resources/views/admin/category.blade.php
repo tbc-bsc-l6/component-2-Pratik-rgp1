@@ -7,6 +7,7 @@
         .div_center{
             text-align:center;
             padding-top:40px;
+
         }
 
         .h2_font{
@@ -16,6 +17,7 @@
 
         .text_color{
             color:black;
+            
         }
         .center{
             margin:auto;
@@ -47,7 +49,7 @@
       @include('admin.header')
 
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="cont-wrapper">
 
         @if(session()->has('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

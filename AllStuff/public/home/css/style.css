@@ -159,15 +159,15 @@ a:focus {
   padding: 10px 20px; 
   color: #131313;
   text-align: center;
-  text-transform: uppercase;
   border-radius: 5px;
   transition: all 0.3s;
-  font-weight: 550;
+  font-weight: 500 0;
 }
 
 .custom_nav-container .navbar-nav .nav-item:hover .nav-link,
-.custom_nav-container .navbar-nav .nav-item.active .nav-link {
-  color: #f7444e;
+.custom_nav-container .navbar-nav .nav-item.active .nav-link
+{
+  color: #d49426;
 }
 
 /* Adjust search button styling */
@@ -233,8 +233,6 @@ a:focus {
   top: 0;
 }
 
-
-/*end header section*/
 /* slider section */
 .slider_section {
   -webkit-box-flex: 1;
@@ -414,9 +412,7 @@ a:focus {
   -webkit-transform: translateY(0);
           transform: translateY(0);
 }
-.arrival_section {
-    /* background-color: #d4ced0; */
-}
+
 .product_section .option_container {
   position: absolute;
   top: 0;
@@ -477,16 +473,26 @@ a:focus {
   color: #f7444e;
 }
 
-.product_section .options .option2 {
+/* Add to Cart Button */
+.product_section .option2 {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 30px;
+  width: 165px;
+  text-align: center;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  margin: 5px 0;
   background-color: #000000;
   border: 1px solid #000000;
   color: #ffffff;
 }
 
-.product_section .options .option2:hover {
+.product_section .option2:hover {
   background-color: transparent;
   color: #000000;
 }
+
 
 .product_section .btn-box {
   display: -webkit-box;

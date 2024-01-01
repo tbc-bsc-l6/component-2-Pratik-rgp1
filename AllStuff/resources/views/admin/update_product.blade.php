@@ -44,7 +44,7 @@
       @include('admin.header')
 
       <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="cont-wrapper">
 
         @if(session()->has('message'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

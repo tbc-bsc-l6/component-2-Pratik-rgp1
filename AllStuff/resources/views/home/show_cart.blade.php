@@ -37,20 +37,6 @@
             background-color: #AD9551;
             color: white;
         }
-        .btn-remove {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .btn-remove:hover {
-            background-color: #c82333;
-        }
         .checkout-section{
          text-align:end;
          margin-right:100px;
@@ -101,12 +87,16 @@
                     <th>Action</th>
                     <th>Total Price</th>
                 </tr>
-           
-                <?php $total = 0; ?>
+               
+                <?php $total = 0; 
+                foreach($cart as $cartItem)
+                $total += $cartItem->price * $cartItem->quantity;
+                ?>
                 @foreach($cart as $cartItem)
 <tr>
     <td>{{$cartItem->product_title}}</td>
-    <td>
+    
+    <td> 
     <div class="quantity-controls" 
                 data-price="{{ $cartItem->price }}" 
                 data-initial-quantity="{{ $cartItem->initial_quantity }}"> <!-- Add initial quantity data attribute -->
@@ -117,9 +107,15 @@
             </div>
                 </td>
     </td>
+    
     <td><img src="/product/{{$cartItem->image}}" style="max-width: 100px; height: auto;"></td>
     <td>Rs.{{$cartItem->price}}</td>
-    <td><a class="btn-remove" href="{{url('remove_cart',$cartItem->id)}}">Remove</a></td>
+    <td><form method="POST" action="{{ url('remove_cart', $cartItem->id) }}">
+    @csrf
+    @method('DELETE')
+    <button type="submit">Remove</button>
+</form>
+</td>
     <td class="total-price">Rs.{{$cartItem->price * $cartItem->quantity}}</td>
 
    
@@ -135,9 +131,10 @@
         <!-- Checkout Section -->
         <section class="checkout-section">
             <div class="checkout-cart">
-                <a href="" class="btn btn-primary btn-checkout">Checkout</a>
+                <a href="{{url('payment_checkout',['total' => $total])}}" class="btn btn-primary btn-checkout">Checkout</a>
             </div>
         </section>
+
         <!-- End Checkout Section -->
         @include('home.footer')
         <script src="home/js/jquery-3.4.1.min.js"></script>
