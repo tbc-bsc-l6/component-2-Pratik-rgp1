@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     // public const 
     public const HOME = '/redirect'; 
-    // public const  UserPage = '/userLogin';
+   
    
 
     /**

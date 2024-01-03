@@ -62,12 +62,12 @@
                         <h6>Product Description : {{$product->description}}</h6>
                         <h6>Available Quantity : {{$product->quantity}}</h6>
 
-                        <form method="Post">
+                        <form method="POST" action="{{ url('add_to_cart', $product->id) }}">
                            @csrf
-                        <a href="{{url('add_to_cart',$product->id)}}" class="btn btn-primary" style="background-color: #FF5733;">
+                           <button type="submit" class="fas fa-cart-plus" style="height:40px; padding-top:20px;padding-bottom:20px; border:2px solid black;">Add to Cart</button>
+                        <!-- <a href="{{url('add_to_cart',$product->id)}}" class="btn btn-primary" style="background-color: #FF5733;"> -->
                         
-    <i class="fas fa-cart-plus"></i> Add to Cart
-</a>
+<!-- </a> -->
 </form>
                   </div>
                </div>

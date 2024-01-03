@@ -88,9 +88,9 @@
                     <th>Total Price</th>
                 </tr>
                
-                <?php $total = 0; 
+                <?php $totals = 0; 
                 foreach($cart as $cartItem)
-                $total += $cartItem->price * $cartItem->quantity;
+                $totals += $cartItem->price * $cartItem->quantity;
                 ?>
                 @foreach($cart as $cartItem)
 <tr>
@@ -117,13 +117,12 @@
 </form>
 </td>
     <td class="total-price">Rs.{{$cartItem->price * $cartItem->quantity}}</td>
-
-   
 </tr>
 @endforeach
+
 <tr>
     <td colspan="5" style="text-align: right;"><strong>Total Price:</strong></td>
-    <td id="cart-total-price">Rs.{{$total}}</td>
+    <td id="cart-total-price">Rs.{{$totals}}</td>
 </tr>
             </table>
         </div>
@@ -131,7 +130,7 @@
         <!-- Checkout Section -->
         <section class="checkout-section">
             <div class="checkout-cart">
-                <a href="{{url('payment_checkout',['total' => $total])}}" class="btn btn-primary btn-checkout">Checkout</a>
+                <a href="{{url('payment_checkout',['totals' => $totals])}}" class="btn btn-primary btn-checkout">Checkout</a>
             </div>
         </section>
 
@@ -147,8 +146,13 @@
 
         <script>
     document.addEventListener('DOMContentLoaded', function () {
+        var totals = <?php echo $totals; ?>;
         const quantityBtns = document.querySelectorAll('.quantity-btn');
         const totalPriceElem = document.getElementById('cart-total-price');
+        const cartSessionKey = 'cart';
+
+        // Initialize the cart object in session storage if it doesn't exist
+        const cart = JSON.parse(sessionStorage.getItem(cartSessionKey)) || {};
 
         function updateTotalPrice() {
             // Calculate and update the total cart price
@@ -166,16 +170,13 @@
         }
 
         function updateQuantityInSession(product_id, newQuantity) {
-            // Update quantity in session storage
-            const cart = JSON.parse(sessionStorage.getItem('cart')) || {};
-
+            // Update quantity in the cart object in session storage
             cart[product_id] = newQuantity;
-            sessionStorage.setItem('cart', JSON.stringify(cart));
+            sessionStorage.setItem(cartSessionKey, JSON.stringify(cart));
         }
 
         function updateQuantityElementsFromSession() {
-            // Retrieve quantities from session storage and update the elements
-            const cart = JSON.parse(sessionStorage.getItem('cart')) || {};
+            // Retrieve quantities from the cart object in session storage and update the elements
             Object.keys(cart).forEach(product_id => {
                 const quantity = cart[product_id];
                 const quantityElem = document.querySelector(`[data-id="${product_id}"] .quantity`);
@@ -203,7 +204,6 @@
                 } else if (action === 'decrease' && currentQuantity > 1) {
                     currentQuantity--;
                 }
-                
 
                 quantityElem.textContent = currentQuantity;
 
@@ -226,6 +226,7 @@
         updateTotalPrice();
     });
 </script>
+
 
     </div>
 </body>

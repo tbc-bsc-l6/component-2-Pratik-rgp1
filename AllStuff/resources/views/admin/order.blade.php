@@ -24,6 +24,7 @@
             padding:20px;
         }
         </style>
+  
   </head>
   <body>
     <div class="container-scroller">
@@ -47,6 +48,7 @@
                     <th class="table_deg">Payment Status</th>
                     <th class="table_deg">Delivery Status</th>
                     <th class="table_deg">Image</th>
+                    <th class="table_deg">Delivered</th>
                   </tr>
 
                   @foreach($order as $order)
@@ -61,7 +63,15 @@
                     <td>{{$order->payment_status}}</td>
                     <td>{{$order->delivery_status}}</td>
                     <td>
-                    <img class="image" src="/product/{{$order->image}}" style="width: 100px; height: auto;">
+                    <img class="image" src="/product/{{$order->image}}" style="width: 100px; height: auto;padding:3px;">
+                </td>
+                <td>
+                  @if($order->delivery_status=='processing')
+                  <!-- shows delivered button oly when delivery_status is processing -->
+                  <a  href="{{url('delivered',$order->id)}}" onclick="return confirm('Are you sure this product is delivered?')" class="btn btn-primary">Delivered</a>
+                  @else
+                  <p style="color:green;">Delivered</p>
+                  @endif
                 </td>
                   </tr>
                   @endforeach

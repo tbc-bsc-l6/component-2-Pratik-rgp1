@@ -145,7 +145,7 @@
                 </div>
 
                 <div class="total-price">
-    Total Price: {{$total}}
+    Total Price: {{$totals}}
 </div>
 
         <div class="pay_esewa">

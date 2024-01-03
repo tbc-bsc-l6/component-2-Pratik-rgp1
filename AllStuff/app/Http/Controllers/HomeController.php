@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         public function products_page()
         {
-            // $product = Product::paginate(10);
+            $product = Product::paginate(10);
      
             
             return view('home.products_page');
@@ -46,45 +46,43 @@ class HomeController extends Controller
             return view('home.product_details', compact('product'));
         }
 //adding products from the home page
-        public function add_to_cart(Request $request, $id)
-    {
-        if (Auth::id()) {
-            $user = Auth::user();
-            $product = Product::find($id);
+public function add_to_cart(Request $request, $id)
+{
+    if (Auth::id()) {
+        $user = Auth::user();
+        $product = Product::find($id);
 
-            $existingCart = Cart::where('user_id', $user->id)
-                ->where('product_id', $product->id)
-                ->first();
+        $existingCart = Cart::where('user_id', $user->id)
+            ->where('product_id', $product->id)
+            ->first();
 
-            if (!$existingCart) {
-                
-                $cart = new Cart;
-                $cart->name = $user->name;
-                $cart->email = $user->email;
-                $cart->phone = $user->phone;
-                $cart->address = $user->address;
-                $cart->user_id = $user->id;
-                $cart->product_title = $product->title;
-                $cart->quantity = 1; 
+        if (!$existingCart) {
+            $cart = new Cart;
+            $cart->name = $user->name;
+            $cart->email = $user->email;
+            $cart->phone = $user->phone;
+            $cart->address = $user->address;
+            $cart->user_id = $user->id;
+            $cart->product_title = $product->title;
+            $cart->quantity = 1;
 
-                if ($product->discounted_price != null) {
-                    $cart->price = $product->discounted_price * $cart->quantity;
-                } else {
-                    $cart->price = $product->price * $cart->quantity;
-                }
-                
-                $cart->total = $cart->price* $cart->quantity;
-                $cart->image = $product->image;
-                $cart->product_id = $product->id;
-                $cart->save();
-                
+            if ($product->discounted_price != null) {
+                $cart->price = $product->discounted_price;
+            } else {
+                $cart->price = $product->price;
             }
 
-            return redirect()->route('show_cart');
-        } else {
-            return redirect('login]');
+            $cart->total = $cart->price * $cart->quantity;
+            $cart->image = $product->image;
+            $cart->product_id = $product->id;
+            $cart->save();
         }
+
+        return redirect()->route('show_cart');
+    } else {
+        return redirect('login');
     }
+}
 
     //navbar cart click function
         public function show_cart()
@@ -142,9 +140,9 @@ class HomeController extends Controller
                 $order->save();
 
                 // deleteing data from the cart 
-                $cart_id=$data->id;
-                $cart=cart::find($cart_id);
-                $cart->delete();
+                // $cart_id=$data->id;
+                // $cart=cart::find($cart_id);
+                // $cart->delete();
             }
             return view('home.payment_checkout', compact('total'));
         }
