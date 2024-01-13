@@ -5,17 +5,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductSortController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\RegisterController;
+
+use App\Http\Controllers\CartController;
+
+
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -36,15 +33,26 @@ Route::post('/update_product_confirm/{id}',[AdminController::class,'update_produ
 Route::get('/view_product',[AdminController::class,'view_product'])->middleware('auth');
 Route::post('/add_product',[AdminController::class,'add_product'])->middleware('auth');
 Route::get('/show_product',[AdminController::class,'show_product'])->middleware('auth');
-Route::get('/product_details/{id}',[HomeController::class,'product_details']);
-
 Route::get('/order',[AdminController::class,'order'])->middleware('auth');
 Route::get('/delivered/{id}',[AdminController::class,'delivered'])->middleware('auth');
 
-Route::post('/add_to_cart/{id}',[HomeController::class,'add_to_cart'])->middleware('auth')->name('add_to_cart');
-Route::get('/show_cart',[HomeController::class,'show_cart'])->name('show_cart');
-Route::delete('/remove_cart/{id}', [HomeController::class, 'remove_cart'])->name('remove_cart');
+Route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
-Route::get('/payment_checkout/{total}',[HomeController::class,'payment_checkout'])->name('payment_checkout');
+Route::post('/add_to_cart/{id}',[CartController::class,'add_to_cart'])->middleware('auth')->name('add_to_cart');
+Route::get('/show_cart',[CartController::class,'show_cart'])->name('show_cart');
+Route::delete('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
 
-Route::get('/products_page',[HomeController::class,'products_page'])->middleware('auth');
+// Route::get('/out_stock/{id}', [CartController::class, 'out_stock'])->name('out_stock');
+
+Route::get('/payment_checkout/{totals}',[CartController::class,'payment_checkout'])->name('payment_checkout');
+
+Route::get('/products_page',[HomeController::class,'products_page']);
+
+Route::get('/about',[HomeController::class,'about']);
+Route::get('/contact',[HomeController::class,'contact']);
+
+Route::get('/product_search',[HomeController::class,'product_search']);
+
+Route::get('/product/sort', [ProductSortController::class, 'sort'])->name('product.sort');
+
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');

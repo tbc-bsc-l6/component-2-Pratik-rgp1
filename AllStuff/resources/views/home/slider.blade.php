@@ -1,4 +1,4 @@
-<section class="slider_section" >
+<section class="slider_section" style="margin-top:-47px;" >
     <div class="slider_bg_box">
         <img src="images/slide.png" alt="">
     </div>

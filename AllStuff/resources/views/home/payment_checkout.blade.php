@@ -111,56 +111,48 @@
 <body>
     <div class="hero_area">
         @include('home.header')
-        <div class="bill_heading">
 
-            <h2>Billing Information</h2 >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Products Summary Section -->
+                    <div class="products-summary">
+                        <h3>Products Summary</h3>
+                        <!-- Add the details of the products here -->
+                        <ul>
+                            <!-- Add product details dynamically -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <!-- Billing Information Section -->
+                    <div class="bill_heading">
+                        <h2>Billing Information</h2>
+                    </div>
+
+                    <div class="billing-center">
+                        <div class="billing-form-container">
+                            <form action="process_billing" method="POST" class="billing-form">
+                                <!-- Billing form fields go here -->
+                                <div class="total-price">
+                                    Total Price: {{$total}}
+                                </div>
+
+                                <div class="pay_esewa">
+                                    <img src="images/esewa-logo.png" alt="eSewa Logo" class="esewa-logo">
+                                    <button id="payEsewaBtn" class="btn btn-primary">Pay E-sewa</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="billing-center">
-        <div class="billing-form-container">
-            <form action="process_billing" method="POST" class="billing-form">
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="fullname">Full Name:</label>
-                    <input type="text" id="fullname" name="fullname" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="location">Delivery Location:</label>
-                    <input type="tel" id="location" name="location" class="form-control" required>
-                </div>
-
-                <div class="total-price">
-    Total Price: {{$totals}}
-</div>
-
-        <div class="pay_esewa">
-            <img src="images/esewa-logo.png" alt="eSewa Logo" class="esewa-logo">
-            <button id="payEsewaBtn" class="btn btn-primary">Pay E-sewa</button>
-        </div>
-
-            </form>
-        </div>
-    </div>
-</div>
+    </body> 
 
     @include('home.footer')
         <script src="home/js/jquery-3.4.1.min.js"></script>
         <script src="home/js/popper.min.js"></script>
         <script src="home/js/bootstrap.js"></script>
         <script src="home/js/custom.js"></script>
-</body>

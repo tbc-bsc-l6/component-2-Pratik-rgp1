@@ -1,3 +1,32 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="shortcut icon" href="images/AllStuff.png" type="">
+      <title>AllStuff</title>
+     
+      <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      
+      <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+     
+      <link href="home/css/style.css" rel="stylesheet"/>
+  
+      <link href="home/css/responsive.css" rel="stylesheet" />
+   </head>
+   <body>
+      <div class="hero_area">
+        
+        @include('home.header')
+       
+      </div>
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -5,7 +34,7 @@
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-
+        <h1 class="text-2xl font-semibold text-center mb-6 text-burgundy-700" style="color: #4a5568; ">Register</h1>
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -16,7 +45,7 @@
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" style="text-transform: lowercase;"/>
             </div>
             <div class="mt-4">
                 <x-label for="phone" value="{{ __('Phone') }}" />
@@ -66,3 +95,8 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+<!-- <div class="reg_footer" style="padding-top:40px;"> -->
+@include('home.footer')
+<!-- </div> -->
+</body>
+</html>

@@ -15,7 +15,7 @@
                      <p style="margin-top: 20px;margin-bottom: 30px; font-size:18px">
                      "Discover everything you need, from fashion to gadgets. Quality and style meet in our AllStuff collection!"
                      </p>
-                     <a href="">
+                     <a href="/products_page">
                      Shop Now
                      </a>
                   </div>

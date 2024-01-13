@@ -1,11 +1,9 @@
-<section class="product_section layout_padding">
+<section class="product_section layout_padding" style="margin-top:-50px;">
          <div class="container">
-            <div class="heading_container heading_center">
-               <h2>
-                  Our <span>products</span>
-               </h2>
-            </div>
+        
+
             <div class="row">
+           
                @foreach($product as $products)
                <div class="col-sm-6 col-md-4 col-lg-4">
                   <div class="box">
@@ -18,16 +16,15 @@
     @csrf
     <button type="submit" class="option2">Add to Cart</button>
 </form>
-
                         </div>
                      </div>
                      <div class="img-box">
                         <img src="product/{{$products->image}}" alt="">
                      </div>
                      <div class="detail-box">
-                        <h5>
+                        <h6>
                           {{$products->title}}
-                        </h5>
+                        </h6>
 
                         @if($products->discounted_price!=null)
                         <h6>
@@ -52,3 +49,20 @@
             </span>
          </div>
       </section>
+      <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
+      <script>
+    document.getElementById('sort-button').addEventListener('click', function() {
+        document.getElementById('sort-form').submit();
+    });
+</script>
+     
+     

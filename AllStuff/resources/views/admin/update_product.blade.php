@@ -86,16 +86,17 @@
             </div>
             
             <div class="div_product">
-                <label>Product Category:</label>
+    <label>Product Category:</label>
+    <select class="text_color" name="category" >
+        <option value="" selected="">Update category</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->category_name }}" {{ $product->category_name == $category->category_name ? 'selected' : '' }}>
+                {{ $category->category_name }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
-<select class="text_color" name="category" required="">
-    @foreach($categories as $cat)
-        <option value="{{$cat->category_name}}">{{$cat->category_name}}</option>
-    @endforeach
-</select>
-   
-
-            </div>
 
             <div class="div_product">
                 <label> Current Product Image:</label>
