@@ -4,45 +4,52 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductSortController extends Controller
 {
     public function sort(Request $request)
     {
-        $sortOption = $request->input('short-by', 'default');
+        $product = Product::paginate(6);
+    
+        // Get the selected sorting option from the request
+        $sortBy = $request->input('short-by');
 
-        $priceMin = $request->input('price-min', 0);
-        $priceMax = $request->input('price-max', PHP_INT_MAX);
+        // Define default sorting column and order
+        $sortColumn = 'title';
+        $sortOrder = 'asc';
 
-        $query = Product::whereNotNull('discounted_price')
-            ->whereBetween('discounted_price', [$priceMin, $priceMax]);
-        
 
-        $product = $query->orderBy($this->getSortColumn($sortOption), $this->getSortOrder($sortOption))->paginate(12);
-
-        return view('home.products_page', compact('product', 'priceMin', 'priceMax'));
-    }
-
-    private function getSortColumn($sortOption)
-    {
-        // return ($sortOption === 'discount') ? 'desc' : 'asc';
-        // Adjust the sorting columns based on your database schema
-        switch ($sortOption) {
+        // Adjust sorting based on the selected option
+        switch ($sortBy) {
             case 'discount':
-                return 'discounted_price';
+                $sortColumn = 'discounted_price'; // Replace with your actual discount column
+                $product = Product::whereNotNull('discounted_price')->paginate(6);
+                break;
             case 'title':
-                return 'title';
+                $sortColumn = 'title';
+                $sortOrder = 'asc';
+                break;
             case 'highToLow':
-                return 'price';
+                $sortColumn = 'price';
+                $sortOrder = 'desc';
+                break;
             case 'lowToHigh':
-                return 'price';
+                $sortColumn = 'price';
+                $sortOrder = 'asc';
+                break;
             default:
-                return 'created_at'; // default sorting column
+            $sortColumn = 'default_column'; // Replace with a default column name
+            $sortOrder = 'asc'; 
+             break;
         }
+
+        // Query the database for products based on the sorting criteria
+        $product = Product::orderBy($sortColumn,$sortOrder)->paginate(6);
+
+        // You can return the sorted data to the view or perform any necessary actions
+        // For simplicity, let's assume you want to return the sorted products to a view
+        return view('home.products_page', compact('product') );
     }
 
-    private function getSortOrder($sortOption)
-    {
-        return ($sortOption === 'highToLow') ? 'desc' : 'asc';
-    }
 }

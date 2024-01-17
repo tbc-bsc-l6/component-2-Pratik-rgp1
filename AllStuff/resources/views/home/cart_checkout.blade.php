@@ -118,10 +118,7 @@
                     <!-- Products Summary Section -->
                     <div class="products-summary">
                         <h3>Products Summary</h3>
-                        <!-- Add the details of the products here -->
-                        <ul>
-                            <!-- Add product details dynamically -->
-                        </ul>
+                       
                     </div>
                 </div>
 
@@ -133,7 +130,7 @@
 
                     <div class="billing-center">
                         <div class="billing-form-container">
-                            <form action="process_billing" method="POST" class="billing-form">
+                            <form action="process_billing" method="GET" class="billing-form">
                                 <!-- Billing form fields go here -->
                                 <div class="total-price">
                                     Total Price: {{$total}}
@@ -141,7 +138,7 @@
 
                                 <div class="pay_esewa">
                                     <img src="images/esewa-logo.png" alt="eSewa Logo" class="esewa-logo">
-                                    <button id="payEsewaBtn" class="btn btn-primary">Pay E-sewa</button>
+                                    <button id="payEsewaBtn" href="{{url('order_payment_checkout')}}" class="btn btn-primary">Pay E-sewa</button>
                                 </div>
                             </form>
                         </div>

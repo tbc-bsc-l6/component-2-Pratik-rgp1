@@ -13,6 +13,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CartController;
 
 
+
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -38,13 +39,13 @@ Route::get('/delivered/{id}',[AdminController::class,'delivered'])->middleware('
 
 Route::get('/product_details/{id}',[HomeController::class,'product_details']);
 
-Route::post('/add_to_cart/{id}',[CartController::class,'add_to_cart'])->middleware('auth')->name('add_to_cart');
+Route::post('/add_to_cart_session/{id}',[CartController::class,'add_to_cart_session'])->middleware('auth')->name('add_to_cart');
 Route::get('/show_cart',[CartController::class,'show_cart'])->name('show_cart');
-Route::delete('/remove_cart/{id}', [CartController::class, 'remove_cart'])->name('remove_cart');
 
-// Route::get('/out_stock/{id}', [CartController::class, 'out_stock'])->name('out_stock');
+Route::get('/cart_checkout/{totals}',[CartController::class,'cart_checkout'])->name('cart_checkout');
+Route::post('/order_payment_checkout',[CartController::class,'order_payment_checkout'])->name('payment_checkout');
 
-Route::get('/payment_checkout/{totals}',[CartController::class,'payment_checkout'])->name('payment_checkout');
+Route::delete('/remove_cart/{product_id}', [CartController::class, 'remove_cart'])->name('remove.cart');
 
 Route::get('/products_page',[HomeController::class,'products_page']);
 
@@ -56,3 +57,4 @@ Route::get('/product_search',[HomeController::class,'product_search']);
 Route::get('/product/sort', [ProductSortController::class, 'sort'])->name('product.sort');
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
